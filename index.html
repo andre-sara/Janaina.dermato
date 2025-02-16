@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Janaina</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; }
+        
+        .bottom-sheet {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .bottom-sheet.show { display: block; }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .overlay.show { display: block; }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+            border: 4px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-size: cover;
+            margin: auto;
+            margin-top: -80px;
+            position: relative;
+            z-index: 30;
+        }
+        
+        .link-profile {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            background: #ff69b4;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .profile-icons-row {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .item-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            min-width: 80px;
+            cursor: pointer;
+        }
+
+        .item-social i {
+            font-size: 40px; /* Ajuste o tamanho conforme necessário */
+        }
+        
+        .header {
+            height: 140px;
+            background: #ff69b4;
+            width: 100%;
+        }
+        
+        .profile-info {
+            text-align: center;
+            padding: 80px 20px 10px 20px;
+        }
+        
+        .profile-name {
+            display: inline-block;
+            font-size: 23px;
+            line-height: 28px;
+        }
+        
+        .profile-title {
+            font-size: 17px;
+            color: #999;
+            line-height: 22px;
+            margin-top: 5px;
+        }
+        
+        .profile-description {
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+        
+        .bt-back {
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bottom-sheet">
+        <div style="margin: auto; max-width: 450px;">
+            <div class="bt-back">
+                <i class="las la-arrow-left"></i>
+            </div>
+            <br/>Qual número você deseja ligar?<br/><br/>
+            <div class="row">
+                <a rel="nofollow" href="tel:+5541988888754" class="link-profile">
+                    <i class="las la-mobile"></i>
+                    <span>
+                        <small>Celular:<br/></small>
+                        +5541988888754
+                    </span>
+                </a>
+            </div>
+            <div class="row">
+                <a rel="nofollow" href="tel:5541988888754" class="link-profile">
+                    <i class="las la-phone"></i>
+                    <span>
+                        <small>Fixo:<br/></small>
+                        5541988888754
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="header"></div>
+
+    <div class="avatar" style="background-image: url('https://example.com/imagem.jpg')"></div>
+
+    <div class="profile-main-body">
+        <div class="profile-info">
+            <span class="profile-name">
+                Dra. Janaina
+            </span>
+            <div class="profile-title">
+                Médico Consultório
+            </div>
+        </div>
+
+        <div class="profile-icons-row">
+            <a href="#" class="item-social" onclick="showBottomSheet()">
+                <i class="las la-phone"></i><br/>
+                Ligar
+            </a>
+            <a href="mailto:fdcanella@gmail.com" class="item-social">
+                <i class="las la-envelope"></i><br/>
+                Email
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5541988888754" class="item-social">
+                <i class="lab la-whatsapp"></i><br/>
+                WhatsApp
+            </a>
+            <a href="https://maps.google.com?q=Rua%20Volunt%C3%A1rios%20da%20P%C3%A1tria%2C%20233%2C%20sl-33%203o.andar%2C%20Centro%2C%20Curitiba%2C%20Paran%C3%A1%2FBrasil" class="item-social">
+                <i class="las la-map-marker-alt"></i><br/>
+                Mapa
+            </a>
+        </div>
+
+        <div class="profile-description">
+            Dermatologista<br/>Unimed / Copel / Caixa / Itaú / Sanepar/Medservise
+        </div>
+    </div>
+
+    <script>
+        function showBottomSheet() {
+            document.querySelector('.overlay').classList.add('show');
+            document.querySelector('.bottom-sheet').classList.add('show');
+        }
+
+        document.querySelector('.overlay').addEventListener('click', function() {
+            this.classList.remove('show');
+            document.querySelector('.bottom-sheet').classList.remove('show');
+        });
+
+        document.querySelector('.bt-back').addEventListener('click', function() {
+            document.querySelector('.overlay').classList.remove('show');
+            document.querySelector('.bottom-sheet').classList.remove('show');
+        });
+    </script>
+</body>
+</html>
