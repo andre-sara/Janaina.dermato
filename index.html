@@ -80,14 +80,14 @@
             padding: 10px;
             min-width: 80px;
             cursor: pointer;
-            border: 1px solid #ff69b4; /* Borda dos botões */
+            border: 1px solid #a89a85; /* Borda dos botões */
             border-radius: 10px; /* Bordas arredondadas */
             background: #f9f9f9; /* Fundo dos botões */
             transition: background 0.3s; /* Efeito de transição */
         }
 
         .item-social:hover {
-            background: #ff69b4; /* Cor de fundo ao passar o mouse */
+            background: #a89a85; /* Cor de fundo ao passar o mouse */
             color: white; /* Cor do texto ao passar o mouse */
         }
 
@@ -97,7 +97,7 @@
         
         .header {
             height: 140px;
-            background: #ff69b4;
+            background: #a89a85;
             width: 100%;
         }
         
@@ -127,11 +127,11 @@
         }
 
         .profile-container {
-            border: 2px solid #ff69b4; /* Borda rosa */
+            border: 2px solid #a89a85; /* Borda Dourada */
             border-radius: 10px; /* Bordas arredondadas */
             padding: 20px; /* Espaçamento interno */
             margin: 20px auto; /* Centraliza o contêiner */
-            max-width: 450px; /* Largura máxima */
+            max-width: 400px; /* Largura máxima */
             display: flex;
             flex-direction: column;
             align-items: center; /* Centraliza horizontalmente */
@@ -146,34 +146,6 @@
     </style>
 </head>
 <body>
-    <div class="bottom-sheet">
-        <div style="margin: auto; max-width: 450px;">
-            <div class="bt-back">
-                <i class="las la-arrow-left"></i>
-            </div>
-            <br/>Qual número você deseja ligar?<br/><br/>
-            <div class="row">
-                <a rel="nofollow" href="tel:+5541988888754" class="link-profile">
-                    <i class="las la-mobile"></i>
-                    <span>
-                        <small>Celular:<br/></small>
-                        +5541988888754
-                    </span>
-                </a>
-            </div>
-            <div class="row">
-                <a rel="nofollow" href="tel:5541988888754" class="link-profile">
-                    <i class="las la-phone"></i>
-                    <span>
-                        <small>Fixo:<br/></small>
-                        5541988888754
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="overlay"></div>
 
     <div class="header"></div>
 
@@ -190,15 +162,15 @@
         </div>
 
         <div class="profile-icons-row">
-            <a href="#" class="item-social" onclick="showBottomSheet()">
+	    <a href="tel:+5542998211911" class="item-social">
                 <i class="las la-phone"></i><br/>
                 Ligar
-            </a>
+            </a>	
             <a href="mailto:fdcanella@gmail.com" class="item-social">
                 <i class="las la-envelope"></i><br/>
                 Email
             </a>
-            <a href="https://api.whatsapp.com/send?phone=5541988888754" class="item-social">
+            <a href="https://api.whatsapp.com/send?phone=5542998211911" class="item-social">
                 <i class="lab la-whatsapp"></i><br/>
                 WhatsApp
             </a>
@@ -212,23 +184,6 @@
             Dermatologista<br/>Unimed / Copel / Caixa / Itaú / Sanepar/Medservise
         </div>
     </div>
-
-    <script>
-        function showBottomSheet() {
-            document.querySelector('.overlay').classList.add('show');
-            document.querySelector('.bottom-sheet').classList.add('show');
-        }
-
-        document.querySelector('.overlay').addEventListener('click', function() {
-            this.classList.remove('show');
-            document.querySelector('.bottom-sheet').classList.remove('show');
-        });
-
-        document.querySelector('.bt-back').addEventListener('click', function() {
-            document.querySelector('.overlay').classList.remove('show');
-            document.querySelector('.bottom-sheet').classList.remove('show');
-        });
-    </script>
 
 <!-- Botão de ajuda -->
     <div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #ff1493; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
