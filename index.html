@@ -8,7 +8,14 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: sans-serif; }
-        
+	    
+	.disabled {
+    pointer-events: none; /* Impede a interação com o link */
+    opacity: 0.5; /* Torna o link mais transparente */
+    color: gray; /* Muda a cor do texto para indicar que está desativado */
+    cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
+}
+	    
         .bottom-sheet {
             display: none;
             position: fixed;
@@ -166,10 +173,10 @@
                 <i class="las la-phone"></i><br/>
                 Ligar
             </a>	
-            <a href="mailto:fdcanella@gmail.com" class="item-social">
-                <i class="las la-envelope"></i><br/>
-                Email
-            </a>
+            <a href="mailto:fdcanella@gmail.com" class="item-social disabled">
+	   	 <i class="las la-envelope"></i><br/>
+ 	  	 Email
+	    </a>
             <a href="https://api.whatsapp.com/send?phone=5542998211911" class="item-social">
                 <i class="lab la-whatsapp"></i><br/>
                 WhatsApp
