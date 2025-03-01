@@ -9,17 +9,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: sans-serif; }
 
-	.header-text-top {
-   	     position: absolute; /* Para posicionar o texto em relação à página */
-   	     top: 680px; /* Ajuste a posição vertical conforme necessário */
-    	     left: 5px; /* Ajuste a posição horizontal conforme necessário */
-    	     color: black; /* Cor do texto */
-    	     font-size: 14px; /* Tamanho da fonte */
-    	     font-weight: normal; /* Removido o negrito */
-    	     padding: 0 5px; /* Espaçamento ao redor do texto */
-    	     z-index: 1; /* Para garantir que o texto fique acima de outros elementos */
-	}
-
 	.header-text {
    	     position: absolute; /* Para posicionar o texto em relação ao contêiner */
              top: -15px; /* Ajuste a posição vertical conforme necessário */
@@ -30,7 +19,7 @@
    	     background: white; /* Fundo branco para destacar o texto */
    	     padding: 0 5px; /* Espaçamento ao redor do texto */
    	     z-index: 1; /* Para garantir que o texto fique acima da bord
-	}	    
+	    
         .bottom-sheet {
             display: none;
             position: fixed;
@@ -174,12 +163,11 @@
 
     <div class="avatar" style="background-image: url('https://github.com/andre-sara/Janaina.dermato/blob/main/Dra.%20Janaina%201.jpeg?raw=true')"></div>
 
-    <div class="header-text-top">Estamos em atualização em breve novos recursos!</div> <!-- Novo elemento para o texto na parte superior -->
     <div class="profile-container"> <!-- Novo contêiner para o perfil -->
 	<div class="header-text">Dermatologista</div> <!-- Novo elemento para o texto -->
         <div class="profile-info">
             <span class="profile-name">
-                Dra. Janaina Moreira Ribeiro Machado
+                Dra. Janaina R. Machado
             </span>
             <div class="profile-title">
                 Médico Consultório
@@ -283,7 +271,7 @@
                 answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
                 <button onclick="backToMenu()" style="margin-top: 10px; background-color: #ff1493; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
                 stopAnimatingDots(); // Para a animação após a resposta ser exibida
-            }, 5000); // Tempo de espera de 05 segundos antes de mostrar a resposta
+            }, 5000); // Tempo de espera de 5 segundos antes de mostrar a resposta
         }
 
         // Função para animar os três pontinhos
